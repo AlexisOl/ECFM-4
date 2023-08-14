@@ -1,0 +1,159 @@
+%%% EJERCICIO 1 
+\begin{prob}
+   Una particula de masa m en reposo, en t =0 es puesta en movimiento por un impulso de k unidades $$my'' = k* \delta(t)$$ $\delta$ es una función especial que es una fuerza muy grande, en un tiempo muy corto, demuestre que $$y = k*\frac{t}{m}$$  
+\end{prob}
+\begin{mdframed}
+
+\begin{gather*}
+    my'' = k*\delta(t)\\
+    m\diff{y'}{t} = k*\delta(t)\\
+    m \int_I y'' dy = \int_I k*\delta(t) dt\\
+    \text{si f integrable}\\
+    m *y' dy =  k\\
+    \int_I m *y' dy =  \int_I kdt\\
+    my =   kt \longrightarrow y = \frac{kt}{m} \blacksquare\\
+\end{gather*}
+\end{mdframed}
+
+
+
+%%% EJERCICIO 2
+\begin{prob}
+  Bajo las mismas condiciones resuelva el problema con una fuerza proporcional a $y$ dada por $$m y'' +n^2y = k*\delta(t)$$
+\end{prob}
+    
+    \begin{mdframed}
+        
+        \begin{gather*}
+            m y'' +n^2y = k*\delta(t)\\
+            \text{Parte Homogenea}\\
+            mr^2 +n^2 = 0\\
+            r = \pm\frac{n}{\sqrt{m}}i\\
+            y_h = A\cos(\frac{n}{\sqrt{m}}x)+B\sin(\frac{n}{\sqrt{m}}x)\\
+            \text{Parte particular}\\
+            y_p = A \\
+            A(n^2)=k*\delta(t)\\
+            A = \frac{k*\delta(t)}{n^2}\\
+            y_g=A\cos(\frac{n}{\sqrt{m}}x)+B\sin(\frac{n}{\sqrt{m}}x)+\frac{k*\delta(t)}{n^2} \blacksquare
+        \end{gather*}
+    \end{mdframed}
+
+
+%%% EJERCICIO 3
+\begin{prob}
+Muestre por variacion de parametros que la solucion al PVI $$y'' +2y'+2y = f(t)$$
+\begin{equation}
+    \begin{cases}
+        0 & =y(0)\\
+        0 & =y'(0)\\
+    \end{cases}
+\end{equation}
+    Esta dada por 
+    $$y = \int_0^t e^-{t-\tau}f(\tau)\sin(t-\tau)d\tau$$
+\end{prob}
+\begin{mdframed}
+    Bueno f, debe de existir y la edo debe de tener soluciones linealmente independientes, asi 
+    \begin{gather*}
+        y'' +2y'+2y = f(t) =0 \text{  Homogenea}\\
+        m^2+2m+2 =0 \longrightarrow m_j = i\pm 1, j \in {1,2}\\
+        \text{asi siendo } \cos(i-1), \sin(i-1)\\
+        e^{(i-1)t} \rightarrow \frac{e^{it}}{e^t} \rightarrow \frac{\cos(t)}{e^t},  \frac{\sin(t)}{e^t}\\
+        \text{ahora la particular}\\
+        w=\begin{vmatrix}\\
+        \frac{\cos(t)}{e^t} & \frac{\sin(t)}{e^t}  \\ 
+        -\cos(t)*e^{-t} -\sin(t)*e^{-t} & +\cos(t)*e^{-t}  -\sin(t)*e^{-t}  \\
+        \end{vmatrix}\\
+        w = \frac{1}{(e^t)^2}\\
+        w_1=\begin{vmatrix}\\
+        0 & \frac{\sin(t)}{e^t}  \\ 
+        f(t) & +\diff{}{t}\frac{\sin(t)}{e^t}  \\
+        \end{vmatrix}\\
+        w_1 = -\frac{f(t)\sin(t)}{e^t}\\
+        w_2=\begin{vmatrix}\\
+        \frac{\cos(t)}{e^t} & 0  \\ 
+        +\diff{}{t}\frac{\cos(t)}{e^t} &f(t)   \\
+        \end{vmatrix}\\
+        w_2 = \frac{f(t)\cos(t)}{e^t}\\
+        u = \int{\frac{-\frac{f(t)\sin(t)}{e^t}}{\frac{1}{(e^t)^2}}dt}\\
+        u = -\int_I f(t)\sin(t)e^t dt\\
+        v = \int{\frac{\frac{f(t)\cos(t)}{e^t}}{\frac{1}{(e^t)^2}}dt}\\
+        v = \int_I f(t)\cos(t)e^t dt\\
+        y_f =  \int_I f(t)\cos(t)e^t dt*\frac{\sin(t)}{e^t} -\frac{\cos(t)}{e^t}\int_I f(t)\sin(t)e^t dt\\
+        y_f =  \int_I f(\tau)\cos(\tau)e^\tau d\tau*\frac{\sin(t)}{e^t} -\frac{\cos(t)}{e^t}\int_I f(\tau)\sin(\tau)e^\tau d\tau\\
+        \text{por linealidad}\\
+        y_f =  \int_I f(\tau)\cos(\tau)*\sin(t)*e^{\tau-t} d\tau -\int_I f(\tau)\sin(\tau)*\cos(t)*e^{\tau-t} d\tau\\
+        y_f =  \int_I f(\tau)*\sin(t-\tau)*e^{\tau-t} d\tau \\
+    \end{gather*}
+    y por ser PVI. las constantes se van ya que todo es cero. $\blacksquare$
+\end{mdframed}
+%%% EJERCICIO 4
+\begin{prob}
+    Muestre el radio y el intervalo de convergencia de la serie $$\sum_{n=1}^\infty \frac{x^n}{n}$$
+sucesivas.
+\end{prob}
+\begin{mdframed}
+    Donde sera $\sum_{n=1}^\infty \frac{x^n}{n}= x+\frac{x^2}{2}+\cdots +\frac{x^n}{n}+\cdots$ así que siguiendo la idea de convergencia del radio con $u_1+u_2+\cdots+u_n+\cdots$ con $$\lim_{n\longrightarrow \infty} \vert \frac{u_{n+1}}{u_{n}}\vert = k < 1$$ entonces $u_n= \frac{x^n}{n}, u_{n+1}= \frac{x^{n+1}}{n+1}$
+    \begin{gather*}
+        \lim_{n\longrightarrow \infty} \vert \frac{\frac{x^{n+1}}{n+1}}{\frac{x^{n}}{n}}\vert\\
+        \vert \frac{x*n}{n+1}\vert\\    
+        \vert \frac{x*n}{n*(1+\frac{1}{n})}\vert\\  
+          \lim_{n\longrightarrow \infty}\vert \frac{n}{n(1+\frac{1}{n})}\vert *\vert x\vert\\
+        \vert x \vert < 1\\
+    \end{gather*}
+    donde el intervalo de convergencia sera $-1 \leq x <1$, donde 1 no se puede ya que no cumple con la desigualdad en el radio de convergencia así que $x \in [-1,1)$ y el radio sera 1, esto gracias a que si converge en un intervalo I $\vert x-x_o\vert < R$ esta generara una función es este intervalo, así el radio sera 1. $\blacksquare$
+\end{mdframed}
+
+%% EJERCICIO 5
+\begin{prob}
+    Resolver $$3xy''+y'-y=0$$
+\end{prob}
+\begin{mdframed}
+  \begin{gather*}
+      3xy''+y'-y=0\\
+      y''+\frac{y'}{3x}-\frac{y}{3x}=0\\
+  \end{gather*}
+  donde $P(x)=\frac{1}{3x}$ y $Q(x)=\frac{-1}{3x}$, no son analiticas en $x_0 =0 \in A'$ asi que usaremos Frobenius.
+  \begin{gather*}
+      y = \sum_{n=0}^{\infty} a_n x^{n+r}\\
+      y' = \sum_{n=0}^{\infty} ({n+r})a_n x^{n+r-1}\\
+      y'' = \sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r-2}\\
+      3 \sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r-1}+\sum_{n=0}^{\infty} ({n+r})a_n x^{n+r-1}- \sum_{n=0}^{\infty} a_n x^{n+r}=0\\
+      m = n-1, n=m+1 \vert m=n\\
+      3 \sum_{m=-1}^{\infty}  ({m+1+r})*({m+r}) a_{m+1} x^{m+r}+\sum_{n=-1}^{\infty} ({m+1+r})a_{m+1} x^{m+r}- \sum_{m=0}^{\infty} a_m x^{m+r}=0\\
+      m = -1\\
+      r(a_0)(x^{r-1})(3r-2)=0+  \sum_{m=0}^{\infty}  [3({m+1+r})*({m+r}) a_{m+1}+({m+1+r})a_{m+1}-a_m]x^{m+r}=0\\
+      \text{al ser linealmente independientes las soluciones de series}\\     
+  \end{gather*}
+  \begin{equation}
+    \begin{cases}
+        r_1=0\\
+        r_2=\frac{2}{3}\\
+    \end{cases}
+\end{equation}
+\begin{gather*}
+    a_{m+1}*(m+1+r)*(3(m+r)+1)-a_m=0\\
+    r_1=0\\
+    a_{m+1}=\frac{a_m}{(m+1)(3(m)+1)}\\
+\end{gather*}
+  \begin{equation}
+    \begin{cases}
+        a_1=a_0\\
+        a_2=\frac{a_0}{8}\\
+        a_3=\frac{a_0}{168}\\
+    \end{cases}
+\end{equation}
+\begin{gather*}
+    a_{m+1}*(m+1+\frac{2}{3})*(3(m+\frac{2}{3})+1)-a_m=0\\
+    r_2\\
+    a_{m+1}=\frac{1}{3}*\frac{a_m}{(m+\frac{5}{3})(m+1)}\\
+\end{gather*}
+  \begin{equation}
+    \begin{cases}
+        a_1=\frac{a_0}{5}\\
+        a_2=\frac{a_0}{80}\\
+        a_3=\frac{a_0}{2640}\\
+    \end{cases}
+\end{equation}
+Asi siendo la solucion
+$$y = A(1+x+\frac{x^2}{8}+\frac{x^3}{168}+\cdots)+x^{\frac{2}{3}}B(1+\frac{x}{5}+\frac{x^2}{80}+\frac{x^3}{2640}+\cdots) \blacksquare$$
+\end{mdframed}
