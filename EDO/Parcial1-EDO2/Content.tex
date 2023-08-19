@@ -1,0 +1,165 @@
+ %%% EJERCICIO 1 
+\begin{prob}
+  Resolver $$x^2y'' + xy' + (x^2 - 1)y = 0$$  
+\end{prob}
+\begin{mdframed}
+
+\begin{gather*}
+   \frac{1}{x}, 1-\frac{1}{x^2}, x =0 \in A'\\
+    y = \sum_{n=0}^{\infty} a_n x^{n+r}\\
+    y' = \sum_{n=0}^{\infty} ({n+r})a_n x^{n+r-1}\\
+    y'' = \sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r-2}\\
+    \sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r}+ \sum_{n=0}^{\infty} ({n+r})a_n x^{n+r}+\sum_{n=0}^{\infty} a_n x^{n+r+2}-\sum_{n=0}^{\infty} a_n x^{n+r}=0\\
+    m = n | m = n+2 \longrightarrow n = m-2\\
+    \sum_{m=0}^{\infty}  ({m+r})*({m+r-1}) a_m x^{m+r}+ \sum_{m=0}^{\infty} ({m+r})a_m x^{m+r}+\sum_{m=2}^{\infty} a_{m-2} x^{m+r}-\sum_{m=0}^{\infty} a_m x^{m+r}=0\\
+    m =0, 1\\
+    (r*(r-1)a_0x^{r}+({r})a_0 x^{r}-a_0 x^{r})  +  (({1+r})*({r}) a_1 x^{1+r}+ ({1+r})a_1 x^{1+r}-a_1 x^{1+r})=0\\
+    \text{y por independencia lineal}\\
+\end{gather*}
+  \begin{equation}
+    \begin{cases}
+        (r*(r-1)+({r})-1)=0\longrightarrow \pm1\\
+        (({1+r})*({r})+ ({1+r})-1)=0\longrightarrow r_1 =0, r_2=-2\\
+    \end{cases}
+\end{equation}
+Como $a_0 \neq 0$ entonces nos podemos dar la libertad de definir el siguiente factor $a_1$ como cero, asi siendo la serie y nuevamente por independencia lineal.
+\begin{gather*}
+       [({m+r})*({m+r-1})+ ({m+r}) -1]a_m+ a_{m-2} =0\\
+       a_m=\frac{-a_{m-2}}{ [({m+r})*({m+r-1})+ ({m+r}) -1]}\\
+       a_m=\frac{-a_{m-2}}{ [({m+r})^2 -1]}\\
+       r_1 = 1\\
+       a_m=\frac{-a_{m-2}}{ [({m+1})^2 -1]}\\
+       m>=2\\
+\end{gather*}
+  \begin{equation}
+    \begin{cases}
+        a_2=\frac{-a_{0}}{8}\\
+        a_3=0\\
+        a_4=\frac{a_{0}}{192}\\
+        a_5=0\\
+        a_6=\frac{-a_{0}}{9216}\\
+    \end{cases}
+\end{equation}
+\begin{gather*}
+    y_1 = Ax(1-\frac{x^2}{8}+\frac{x^4}{192}-\frac{x^6}{9216}+\cdots)\\
+    y_1 = Ax(1-\frac{x^2}{2^2(1+1)}+\frac{x^4}{2^5(1+1)(1+2)}-\cdots)\\
+    y_1 = x\sum_{k=0}^{\infty}\frac{(-1)^k a_0 x^{2k}}{k!*4^k*(p+k)\cdot(p+1)}
+\end{gather*}
+este es la funcion de Bessel con x = 1, asi usamos la otra respuesta del punto, que es -1.
+$$
+    y_2 = x^{-1}\sum_{k=0}^{\infty}\frac{(-1)^k a_0 x^{2k}}{k!*4^k*(-p+k)\cdot(-p+1)}
+$$
+$$Y= y_1 +y_2 = J_1(x)+J_{-1}(x) \blacksquare$$
+\end{mdframed}
+
+
+
+%%% EJERCICIO 2
+\begin{prob}
+ La ecuación
+$$x(1 - x)y'' + [\gamma - (\alpha + \beta + 1)x]y' - \alpha\beta y = 0$$
+con $\alpha, \beta, \gamma$ constantes, se conoce como ecuación hipergeométrica o ecuación de Gauss.
+\begin{itemize}
+    \item {Muestre que x = 0 es un punto singular regular.}
+    \item {
+    Los valores de r en la serie de Frobenius son $r = 0$ y $r = 1 - \gamma$
+    }
+    \item {Muestre que
+        $$a_{n+1}=\frac{(n+r+\alpha)(n+r+\beta)}{(n+r+1)(n+r+\gamma)}a_{n}, n =0,1,2,\cdots$$
+    }
+\end{itemize}
+\end{prob}
+    
+    \begin{mdframed}
+    \begin{itemize}
+        \item {
+             Primero para ver los puntos singulares regulares, debemos ver que las funciones P(x) y Q(x), Serán ambas analíticas en una vecindad otorgada por algún cambio que las vuelva analíticas.
+        \begin{gather*}
+         P(x)=\lim_{x\longrightarrow0} x\frac{ [\gamma - (\alpha + \beta + 1)x]}{x(1 - x)}= \gamma\\
+         Q(x)= \lim_{x\longrightarrow0} x^2\frac{ - \alpha\beta}{x(1 - x)}=0\\
+        \end{gather*}
+        Así siendo cero un punto singular regular
+        }
+        \item {
+            \begin{gather*}
+                x(1-x)\sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r-2}+[\gamma - (\alpha + \beta + 1)x]\sum_{n=0}^{\infty} ({n+r})a_n x^{n+r-1}-\alpha\beta\sum_{n=0}^{\infty} a_n x^{n+r}\\
+                \sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r-1}-\sum_{n=0}^{\infty}  ({n+r})*({n+r-1}) a_n x^{n+r}\\
+                +\gamma\sum_{n=0}^{\infty} ({n+r})a_n x^{n+r-1}-(\alpha + \beta + 1)\sum_{n=0}^{\infty} ({n+r})a_n x^{n+r}-\alpha\beta\sum_{n=0}^{\infty} a_n x^{n+r}=0\\
+                u = n-1\\
+                \sum_{u=-1}^{\infty} ({u+r})*({u+r+1}) a_{u+1} x^{u+r}-\sum_{u=0}^{\infty}  ({u+r})*({u+r-1}) a_u x^{u+r}\\
+                +\gamma\sum_{u=-1}^{\infty} ({u+1+r})a_{u+1} x^{u+r}-(\alpha + \beta + 1)\sum_{u=0}^{\infty} ({u+r})a_u x^{u+r}-\alpha\beta\sum_{u=0}^{\infty} a_u x^{u+r}=0\\
+                \text{Por independencia lineal}\\
+                a_0(r-1)(r)x^{r-1}+\gamma(r)a_0x^{r-1}=0\\
+                (r-1)(r)+\gamma*r=0\\
+            \end{gather*}
+            \begin{equation}
+                \begin{cases}
+                   r_1=0\\
+                   r_2=1-\gamma\\
+                \end{cases}
+            \end{equation}
+        }
+        \item {
+            Nuevamente por independencia lineal
+            \begin{gather*}
+                (({u+r})*({u+r+1})+\gamma({u+r+1}))a_{u+1}+(-({u+r})*({u+r-1}) -(\alpha + \beta + 1)({u+r})-\alpha\beta)a_u =0\\
+                (({u+r})*({u+r+1})+\gamma({u+r+1}))a_{u+1} =(({u+r})*({u+r-1}) +(\alpha + \beta + 1)({u+r})+\alpha\beta)a_u\\
+                a_{u+1} =\frac{(({u+r})*({u+r-1}) +(\alpha + \beta + 1)({u+r})+\alpha\beta)}{(({u+r})*({u+r+1})+\gamma({u+r+1}))}a_u\\
+                a_{u+1} =\frac{(({u+r+\alpha})+({u+r+\beta}))}{(({u+r+1})+({u+r+\gamma}))}a_u\\
+            \end{gather*}
+            esta serie desde u = 0, con $u\in I | I =\{0,1,\cdots\} \blacksquare $
+        }
+    \end{itemize}
+    \end{mdframed}
+
+
+%%% EJERCICIO 3
+\begin{prob}
+Denotemos a la solución $y_1$ para $r = 0$ y $a_0 = 1$ de la ecuación hipergeométrica como $F (\alpha, \beta, \gamma, x)$
+\begin{itemize}
+    \item {Muestre que 
+    $$F (1, \beta, \beta, x)= \frac{1}{1-x} $$
+    }
+    \item {Muestre que 
+    $$F (\alpha, \beta, \beta, x)=\frac{1}{(1-x)^{\alpha}}  $$
+    }
+    \item {Muestre que 
+    $$ xF (\frac{1}{2}, \frac{1}{2}, \frac{3}{2}, x^2)={\arcsin(x)}$$
+    }
+\end{itemize}
+
+\end{prob}
+\begin{mdframed}
+    \begin{itemize}
+        \item {
+            bueno en este caso tenemos que
+            \begin{gather*}
+                F_a = a_{u+1}= \frac{(({u+1}))}{(({u+1}))}a_u\\
+            \end{gather*}
+            donde debe de converger la susecion por $\frac{(n)}{(k)}$ asi generando
+            $$\frac{1}{k}$$, sea este valor maximo, con lo cual 
+            $$\sum_{n=0}^{\infty}\frac{(1)_n}{n!}x^n = \frac{1}{1-x}$$, esto debera ser igual a la serie geometria. Esto tambien se aprecia bien con la extension en serie.
+            $$F = 1+\frac{1*\beta}{\beta*1}x++\frac{1*\beta*(1+1)*(1+\beta)}{\beta*(1+\beta)*1*2}x^2+\cdots$$
+            $$F = 1+x+x^2+...= \frac{1}{1-x}$$
+        }
+        \item {
+            Con lo anterior podemos ver que si ahora en vez de tener $\alpha =1$, empleamos el propio valor de alpha, nos dara casi lo mismo, solo que en vez de ser esa serie geometrica, esta sera
+            \begin{gather*}
+                F = 1+\frac{\alpha*\beta}{\beta*1}x+\frac{\alpha*\beta*(\alpha+1)*(1+\beta)}{\beta*(1+\beta)*1*2}x^2+\cdots\\
+                F = 1+\frac{\alpha}{1}x+\frac{\alpha*(\alpha+1)}{1*2}x^2+\cdots\\
+            \end{gather*}
+            Esta forma es de $(a+b)^n =a^n+n*a^{n-1}b+\cdots n*a*b^{n-1}+b^n$, solo que con los valores estipulados asi, siendo
+            $$F = \frac{1}{(1-x)^{\alpha}}$$
+        }
+        \item {
+        Tratemos de llevarlo con pura funcion Gamma
+            \begin{gather*}
+                x\sum \frac{(\frac{1}{2})_n^2}{(\frac{3}{2})}*\frac{x^{2n}}{n!}\\
+                \sum \frac{\Gamma(\frac{1}{2}+n)^2\Gamma(\frac{3}{2})}{\Gamma(\frac{1}{2})^2\Gamma(\frac{3}{2})+n}*\frac{x^{2n+1}}{n!}\\
+                \sum \frac{\Gamma(\frac{1}{2}+n)^2}{(2n+1)\sqrt{\pi}}*\frac{x^{2n+1}}{n!}\\
+                \sum \frac{(2n)!}{(2^{2n}n!)}*\sqrt{\pi}*\frac{1}{{2n+1}\sqrt{\pi}}*\frac{x^{2n+1}}{n!}\\
+                \sum \frac{(2n)!}{2^{2n}(n!)^2}*\frac{x^{2n+1}}{2n+1} = \arcsin(x) \blacksquare
+            \end{gather*}
+        }
+    \end{itemize}
+\end{mdframed}
