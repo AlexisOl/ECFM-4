@@ -1,0 +1,209 @@
+\documentclass[spanish,11ptm letterpage]{article}
+\usepackage[letterpaper]{geometry} 
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
+\usepackage{amsmath,amsthm,amssymb} 
+\usepackage[utf8]{inputenc} 
+
+
+\setlength{\jot}{12pt}
+
+% Permitir la división de ecuaciones en varias páginas
+\allowdisplaybreaks
+
+
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[thinc]{esdiff}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphics}
+\usepackage[spanish, es-noshorthands]{babel}  
+%% ALGUNAS COSAS DE TABLAS
+\usepackage{tabulary}
+\usepackage{multirow}
+\usepackage{multicol} %varias columnas
+\usepackage{array}
+\usepackage{graphicx} %graficas e imagenes
+
+
+
+\title{Tarea 5}
+\author{Alexis Ovalle}
+\date{January 2023}
+
+%%%%%%%%% COMANDOS NUEVOS
+\usepackage{pgf,tikz,pgfplots}
+
+\decimalpoint %cambia las comas por puntos decimal
+%sangrias
+\parindent =0cm 
+
+\usepackage[framemethod=TikZ]{mdframed}%Entornos talegas
+
+\usepackage{enumerate} %enumeraciones
+\usepackage{mathrsfs} %letras chingonas (transformada de laplace)
+\usepackage{subfigure} %varias figuras seguidas
+\usepackage[square,numbers]{natbib} %bibliografias
+\usepackage[nottoc]{tocbibind}
+\bibliographystyle{plainnat}
+\usetikzlibrary{arrows, babel, calc}
+\usepackage{tabulary}
+\usepackage{multirow} %ocupar varias filas en una tabla
+\usepackage{fancybox} %recuadros talegas
+\usepackage{float} %ubicar graficas
+\usepackage{color}
+\usepackage{comment}
+\usepackage{stackrel}
+\usepackage{calligra}
+\usepackage{cite}
+\usepackage{circuitikz} % crear circuitos
+\usepackage{listings} % permite el ingreso de codigo
+\usepackage{enumerate}
+\usepackage{enumitem}
+% NEW PACKAGES
+\usepackage{makeidx}
+\usepackage{authblk} % para la manipulación de autores y afiliación
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{bbold}
+\usepackage{dsfont}
+\usepackage{tensor}
+\usepackage{colortbl}
+\usepackage{amsbsy}
+\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage{verbatim}
+
+%FECHAS
+\usepackage{advdate}
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+%This defines my comments
+\definecolor{mycolor}{RGB}{0,0,250}
+\FXRegisterAuthor{ds}{sds}{\color{mycolor}DS}
+
+
+\usepackage{pdfpages}
+\setlength{\parindent}{1cm} %sangria
+
+%%%%%%%%% COMANDOS PERSONALIZADOS
+%% para notacion de conjuntos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\F}{\mathbb{F}} 
+
+%% FUNCIONES 
+\newcommand{\f}{\textit{f}} 
+\newcommand{\g}{\textit{g}}
+
+\newcommand{\Pos}{\mathbb{P}} %Reales positivos
+\newcommand{\Hilbert}{\mathcal{H}} % Espacio de Hilbert
+
+\newcommand{\kernel}{\mathscr{N}}
+\newcommand{\range}{\mathcal{R}} 
+\newcommand{\lagran}{\mathcal{L}} 
+\newcommand{\laplace}{\mathscr{L}} 
+\newcommand{\partition}{\mathfrak{z}}
+\newcommand{\M}{\mathcal{M}} %Matrices
+\newcolumntype{E}{>{$}c<{$}} %entorno matematico en columnas de una tabla
+\newcommand{\vi}{\boldsymbol{\hat{\imath}}}
+\newcommand{\vj}{\boldsymbol{\hat{\jmath}}}
+\newcommand{\vk}{\vu{k}}
+\newcommand{\vr}{\hat{r}}
+\newcommand{\vp}{\boldsymbol{\hat{\phi}}}
+\newcommand{\vz}{\vu{z}}
+\newcommand{\vaz}{\boldsymbol{\hat{\theta}}}
+\newcommand{\vx}{\vu{x}}%vectores
+\newcommand{\vy}{\vu{y}}%vectores 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\LI}{\lim _{h\longrightarrow 0}}
+\newcommand{\SU}{\longrightarrow \sum _{n=0} ^{\infty}}
+\newcommand{\QED}{\hfill {\blackbox}}
+\newcommand{\cis}{\text{cis} \,}
+\newcommand{\sol}{\textbf{\underline{Solución}: }} %% Solucion
+\newcommand{\af}{\textbf{\underline{Afirmación}: }}
+\newcommand{\cej}{\textbf{\underline{Contraejemplo}: }}
+
+
+%%%%%%%%%
+%%%%%%% ENCABEZADO ^^^^^^^^^^^^^^^^^^^^$
+
+\makeatletter
+\let\thetitle\@title
+\makeatother
+
+
+
+\newcommand{\hoofding}[6]{
+  \noindent\begin{minipage}{0.5\textwidth}
+    \includegraphics[height=4cm]{img/ECFM-LOGO.jpeg}
+  \end{minipage}%
+  \begin{minipage}{0.5\textwidth}
+    \raggedleft
+    #1\\
+    #2\\
+    Nombre: #3\\
+    Curso: #4\\
+    Carne: #5\\
+    Fecha: #6\\
+  \end{minipage}
+
+  \noindent\rule{\textwidth}{0.4pt} % Recta horizontal
+
+  \vspace{5mm}
+}
+\newcommand{\figuur}[2]{\includegraphics[width=#1]{#2}} 
+
+
+
+%hiermee is er geen insprong bij een nieuwe alinea
+\setlength{\parindent}{0pt}
+%de witruimte tussen twee alinea's wordt iets groter
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+
+
+%%%%%%% --------------------------------
+
+%%ESPACIO DONDE SE LLLAMA EL ENCABEZADO
+
+%\input{Header.tex}
+
+\newtheoremstyle{Tema}% name of the style to be used
+  {0mm}% measure of space to leave above the theorem. E.g.: 3pt
+  {10mm}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {\newline}% punctuation between head and body
+  {30mm}% space after theorem head
+  {}% Manually specify head
+
+%%%%%%%% FORMA DE HACER TEOREMAS - hacerlo manana
+\newtheorem{theorem}{Teorema}
+\newtheorem{example}{Ejemplo}
+\newtheorem{corollary}{Corolario}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definicion}
+\newtheorem{prop}{Proposicion}
+
+
+\newtheorem{prob}{Problema}
+
+
+
+\theoremstyle{Tema} \newtheorem{problem}{Problema}    %%%%%  Template para Problema
+
+
+

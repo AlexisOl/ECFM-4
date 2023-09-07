@@ -1,0 +1,99 @@
+
+
+%%% EJERCICIO 1
+\begin{prob}
+ $$J_{-k}(x)= (-1)^k J_{k}(x)$$
+
+\end{prob}
+\begin{mdframed}
+\begin{gather*}
+    J_{-k}(x) = \sum_{n=0}^\infty \frac{(-1)^n}{\Gamma(n+1)\Gamma(n+1-k)}(\frac{x}{2})^{2n-k}\\
+    (-1)^k J_{k}(x) =  (-1)^k \sum_{n=0}^\infty \frac{(-1)^n}{\Gamma(n+1)\Gamma(n+1+k)}(\frac{x}{2})^{2n+k}\\
+     (-1)^k J_{k}(x) =  \sum_{n=0}^\infty \frac{(-1)^{k+n}}{\Gamma(n+1)\Gamma(n+1+k)}(\frac{x}{2})^{2n+k}\\
+    n +k =u | n = u -k\\
+     \sum_{u=k}^\infty \frac{(-1)^{u}}{\Gamma(u-k+1)\Gamma(u+1)}(\frac{x}{2})^{2(u-k)+k}\\
+     \sum_{u=k}^\infty \frac{(-1)^{u}}{\Gamma(u-k+1)\Gamma(u+1)}(\frac{x}{2})^{2u-k} =  J_{-k}(x)\\
+     \text{con u = k, con n =0, asi sabiendo que empezara desde cero, para cualquier k, mayor o igual que cero} \\
+     (-1)^k J_{k}(x)= J_{-k}(x) | \forall k \in I\blacksquare
+\end{gather*}
+\end{mdframed}
+%%% EJERCICIO 2
+\begin{prob}
+     $$\diff{}{x}[x^kJ_{k}(x)] = x^k J_{k-1}(x)$$
+\end{prob}
+\begin{mdframed}
+\begin{gather*}
+      \diff{}{x}[x^kJ_{k}(x)] = x^k J_{k-1}(x) \\
+   % \text{por linealidad}\\
+    J_{k}(x) =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}(\frac{x}{2})^{2n+k}\\
+    x^kJ_{k}(x)  =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}\left(\frac{x^{2n+2k}}{2^{2n+k}}\right)\\
+\end{gather*}
+\begin{align*}
+    \frac{d}{dx}\left[x^kJ_{k}(x)\right] & =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}\left(2(n+k)\frac{x^{2n+2k-1}}{2^{2n+k}}\right)\\
+    & =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k-1)!}\left(\frac{x^{2n+2k-1}}{2^{2n+k-1}}\right)\\
+    & =x^k\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k-1)!}\left(\frac{x^{2n+k-1}}{2^{2n+k-1}}\right)\\
+    & =x^k\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k-1)!}\left(\frac{x}{2}\right)^{2n+k-1}\\
+    & =x^kJ_{k-1}(x) \blacksquare
+\end{align*}
+
+\end{mdframed}
+%%% EJERCICIO 3
+\begin{prob}
+     $$J'_{k}(x) + kx^{-1}J_{k}(x) = J_{k-1}(x)$$
+\end{prob}
+\begin{mdframed}
+\begin{gather*}
+    J_{k}(x) =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}(\frac{x}{2})^{2n+k}\\
+    J'_{k}(x) =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}(\frac{2n+k}{2})(\frac{x}{2})^{2n+k-1}\\
+    \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}({2n+k})(\frac{x^{2n+k-1}}{2^{2n+k}})\\
+    kx^{-1}J_{k}(x) =\sum_{n=0}^\infty \frac{(-1)^n*k}{(n)!(n+k)!}(\frac{x^{2n+k-1}}{2^{2n+k}})\\
+\end{gather*}
+\begin{align*}
+    J'_{k}(x) + kx^{-1}J_{k}(x)& = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}[2n+k+k](\frac{x^{2n+k-1}}{2^{2n+k}})\\
+    & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}[2n+2k](\frac{x^{2n+k-1}}{2^{2n+k}})\\
+    & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}[n+k](\frac{x^{2n+k-1}}{2^{2n+k-1}})\\
+    & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k-1)!}[n+k](\frac{x}{2})^{2n+k-1}\\
+    & = J_{k-1}(x)\blacksquare\\
+\end{align*}
+\end{mdframed}
+%%% EJERCICIO 4
+\begin{prob}
+     $$\diff{}{x}[J_{0}(x)] = -J_{1}(x)$$
+\end{prob}
+\begin{mdframed}
+ donde 
+ \begin{gather*}
+    J_{0}(x) =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n)!}(\frac{x}{2})^{2n}\\
+    \sum_{n=0}^\infty \frac{(-1)^n}{(n)!^2}(\frac{x}{2})^{2n}\\
+ \end{gather*}
+ Así 
+ \begin{align*}
+      \diff{}{x}[J_{0}(x)] & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!^2}(2n\frac{x^{2n-1}}{2^{2n}})\\
+      & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!^2}(2n\frac{x^{2n-1}}{2^{2n}})\\
+      & = \sum_{n=0}^\infty \frac{(-1)^n}{(n-1)!(n)!}(\frac{x}{2})^{2n-1}\\
+      & = J_{-1}(x) \text{  esto por el Ejercicio 1}\\
+ \end{align*}
+ \begin{align*}
+     \text{Entonces se obtiene}\\
+     J_{-1}(x) & = (-1)J_{1}(x)\\
+      & = -J_{1}(x) \blacksquare\\
+ \end{align*}
+\end{mdframed}
+
+
+%% EJERCICIO 5
+\begin{prob}
+     $$J_{\frac{1}{2}}(x) = \sqrt{\frac{2}{\pi x}}\sin{x}$$
+\end{prob}
+\begin{mdframed}
+    \begin{align*}
+        J_{\frac{1}{2}}(x) & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+\frac{1}{2})!}(\frac{x}{2})^{2n+\frac{1}{2}}\\
+        & = \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+\frac{1}{2})!}(\frac{x}{2})^{2n} \sqrt{\frac{x}{2}}\\
+        & =\sqrt{\frac{x}{2}} \sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+\frac{1}{2})!}(\frac{x}{2})^{2n} \\
+        & =\sqrt{\frac{x}{2}}[\frac{1}{(\frac{1}{2}!)}-\frac{x^2}{4*\frac{3}{2}!}+...] \\
+        & =\sqrt{\frac{x}{2}}[\frac{2}{\sqrt{\pi}}-\frac{x^2}{4}\frac{4}{3\sqrt{\pi}}+\frac{x^4}{16*2!}\frac{8}{15\sqrt{\pi}}-...] \\
+        & =\sqrt{\frac{2}{\pi}}\sqrt{x}[1-\frac{x^2}{6}+\frac{x^4}{120}-...] \\
+        & =\sqrt{\frac{2}{\pi x}}[x-\frac{x^3}{3!}+\frac{x^5}{5!}-...(-1)^{n}\frac{x^{2n+1}}{(2n+1)!}+...] \\
+        & = \sqrt{\frac{2}{\pi x}} \sin{x} \blacksquare\\
+    \end{align*}
+\end{mdframed}
