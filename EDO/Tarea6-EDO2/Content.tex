@@ -1,0 +1,51 @@
+
+
+%%% EJERCICIO 1
+\begin{prob}
+ $$\sum_{n=-\infty}^{\infty}J_{n}(x)t^n= e^{\frac{x}{2} \left( t-\frac{1}{t} \right)}$$
+
+\end{prob}
+\begin{mdframed}
+Como si seguimos la idea de una función generatriz pero bajo una serie, pues sabemos que $\sum a_n t^x$, donde $a_n$ seria una función cualquiera, tendríamos que cada coeficiente de la función generatriz sera el valor que le corresponde a la función en un punto especifico, así siendo esto como un producto entre series, una de la función que es coeficiente y otra como la serie de la función generatriz(la serie de potencias para la variable de la función generatriz), entonces con esta idea voy a tratar de llevarlo a la forma de Bessel.
+\begin{gather*}
+    e^{\frac{x}{2} \left( t-\frac{1}{t} \right)} = e^{\frac{x}{2}t}*e^{\frac{x}{2}\left(\frac{-1}{t} \right)}\\
+    =\sum_{n=0}^{\infty}\frac{\left({\frac{x}{2}t}\right)^{n}}{n!}*\sum_{m=0}^{\infty}\frac{\left({\frac{-x}{2t}}\right)^{m}}{m!}
+\end{gather*}
+Ahora recordando cosas importantes de series, como estas deben de converger, bajo algun intervalo I, el cual debe de ser mejor que algun R, en este intervalo entonces podemos agrupar las series
+\begin{gather*}
+    \sum_{n=0}^{\infty}\sum_{m=0}^{\infty}\frac{(-1)^{m}{x}^{n+m}t^n}{2^{m+n}n!m!t^m}\\
+    \sum_{n=0}^{\infty}\sum_{m=0}^{\infty}\frac{(-1)^{m}{x}^{n+m}*t^{n-m}}{2^{m+n}n!m!}\\
+\end{gather*}
+teniendo cambios en cuanto al alcance de n y m, ya que ahora gracias al producto, tengo $n-m$, donde ambase seran naturales y cero, siendo asi que podemos llegar a tener valores negativos, entonces para el primer cambio de valores sera desde menos infinito hasta el infinito, siempre con m y n, positivos, asi cambiando el valor le saignamos a este $n-m =p$, ya que debemos de tener un valor especifico de exponente para la funcion generatriz. con $p \in (-\infty, \infty)$
+\begin{gather*}
+    \sum_{n=-\infty}^{\infty}\sum_{n-m=p}^{\infty}\frac{(-1)^{m}{x}^{p+m+m}*t^{p}}{2^{m+m+p}(p+m)!m!}\\
+    \sum_{n=-\infty}^{\infty}\sum_{n-m=p}^{\infty}\frac{(-1)^{m}{x}^{p+2m}*t^{p}}{2^{2m+p}(p+m)!m!}\\
+    \sum_{n=-\infty}^{\infty}\sum_{p=0}^{\infty}(-1)^{m}\left(\frac{{x}}{2}\right)^{2m+p}\frac{t^{p}}{(p+m)!m!}\\
+    J_{k}(x) =\sum_{n=0}^\infty \frac{(-1)^n}{(n)!(n+k)!}(\frac{x}{2})^{2n+k}\\
+    \sum_{n=-\infty}^{\infty}J_{p}(x){t^{p}}\blacksquare\\
+\end{gather*}
+\end{mdframed}
+%%% EJERCICIO 2
+\begin{prob}
+     $$\sum_{n=0}^{\infty}L_{n}(x)t^n=  \left( \frac{1}{1-t} \right)e^{\frac{-xt}{1-t}}$$
+\end{prob}
+\begin{mdframed}
+Para Laguerre es la misma idea del anterior solo que ahora comenzare, desde la serie de Laguerre
+\begin{gather*}
+    L_{n}(x) =\sum_{k=0}^\infty \frac{(-1)^k(n)!x^k}{(n)!^2(n-k)!}\\
+    \sum_{n=0}^{\infty}L_{n}(x)t^n=\sum_{k=0}^\infty \frac{(-1)^k(n)!x^k}{(n)!^2(n-k)!}*\sum_{n=0}^{\infty}t^n\\
+\end{gather*}
+Con el cambio para $n-k=m$ en el factorial
+\begin{gather*}
+    \binom{n}{m} = \frac{n!}{m!(n-m)!}\\
+    \sum_{k=0}^\infty \frac{(-1)^k(n)!x^k}{(n)!^2(n-k)!}*\sum_{m=0}^{\infty}t^n\\
+    \sum_{k=0}^\infty (-1)^k x^k*\sum_{m=0}^{\infty}\frac{(m+k)!}{(m)!(k)!^2}t^{m+k}\\
+    \sum_{k=0}^\infty \frac{(-1)^k x^k t^k}{k!}*\sum_{m=0}^{\infty}\frac{(m+k)!}{(m)!(k)!}t^{m}\\
+    \sum_{k=0}^\infty \frac{(-1)^k x^k t^k}{k!}*\sum_{m=0}^{\infty} \binom{m+k}{k}t^{m}\\
+    (\frac{1}{1-t})^{k+1}\sum_{k=0}^\infty \frac{(-1)^k x^k t^k}{k!}\\
+    (\frac{1}{1-t})\sum_{k=0}^\infty \frac{(-1)^k x^k t^k}{(1-t)^k k!}\\
+    (\frac{1}{1-t})\sum_{k=0}^\infty \frac{(-1)^k}{k!}(\frac{xt}{1-t})^{k}\\
+    (\frac{1}{1-t})e^{-\frac{xt}{1-t}} \blacksquare\\
+\end{gather*}
+
+\end{mdframed}
