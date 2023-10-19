@@ -1,0 +1,316 @@
+ %%% EJERCICIO 1 
+\begin{prob}
+  Dado el Sistema Lineal $$ \diff{x}{t}= x -\frac{2}{3} y + t $$  
+   $$ \diff{y}{t}= \frac{4}{3}x  - y +1$$  
+  \begin{enumerate}
+      \item {
+      Muestre que la EDO satisface las condiciones del Teorema de Existencia y Unicidad. Utilice
+las iteraciones de Picard para encontrar una aproximación a la solución
+      }
+      \item {
+      Resuelva el sistema con el método de matrices.
+      }
+  \end{enumerate}
+
+\end{prob}
+\begin{mdframed}
+
+\begin{enumerate}
+    \item {
+        Bueno en este caso vamos a proboar con existencia unicidad, para ello vamos a definir unas cosas, la forma de ver este sistema sera: $f(T, t) = A(t)T +g(t)$, gracias a lo siguiente:
+        \begin{gather*}
+        \overline{T}'= 
+            \begin{pmatrix}
+                {x}' \\
+                {y}' 
+            \end{pmatrix} =  
+            \underbrace{\begin{pmatrix}
+                1 & -\frac{2}{3}\\
+                \frac{4}{3} & -1 
+            \end{pmatrix}}_{A}*
+            \underbrace{\begin{pmatrix}
+                x \\
+                y 
+            \end{pmatrix}}_{T} +\underbrace{\begin{pmatrix}
+                t \\
+                1 
+                \end{pmatrix}}_{g}\\
+        \end{gather*}
+        Primero que sea de lipschitz.
+        \begin{gather*}
+            ||f(X, t)-f(Y, t)||=|| A(t)X +g(t) -A(t)Y - g(t)||\\
+            ||  A(t)*(x-y)|| \leq |A(t)| ||x-y|| = A||x-y||
+        \end{gather*}
+        Ahora con eso como es de lipschitz(gracias a Cauchy-schwarz), es uniformemente continua y debera se continua.
+        BUeno y con Picard
+        \begin{gather*}
+            y_{1,0}=x_0;
+            y_{2,0}=y_0\\
+            y_{1,1}=x_0+\int_{0}^{\tau}y_{1,0}(n)-\frac{2}{3}y_{2,0}(n)+tdn\\
+            y_{2,1}=y_0+\int_{0}^{t}\frac{4}{3}y_{1,0}(n)-y_{2,0}(n)+1dn\\
+            y_{1,1}= x_0+x_0\tau-\frac{2}{3}y_0\tau+t\tau\\
+            y_{2,1}= y_0+\frac{4}{3}x_0\tau-y_0\tau+\tau\\
+            y_{1,2}=x_0+\int_{0}^{t}y_{1,1}(n)-\frac{2}{3}y_{2,1}(n)+ndn\\
+            y_{2,2}=y_0+\int_{0}^{t}\frac{4}{3}y_{1,1}(n)-y_{2,1}(n)+1dn\\
+            y_{1,2}=x_0+\int_{0}^{t}x_0-\frac{2}{3}y_0+\frac{1}{9}x_0n+tn-\frac{2}{3}n dn\\
+            y_{1,2}=x_0+x_0\tau-\frac{2}{3}y_0\tau+\frac{1}{18}x_0\tau^2+\frac{t \tau^2}{2}-\frac{\tau^2}{3}\\
+            y_{2,2}=y_0+\int_{0}^{t}\frac{4}{3}x_0-y_0+\frac{1}{9}y_0+\frac{4}{3}tn-ndn\\
+            y_{2,2}=y_0+\frac{4}{3}x_0\tau-y_0\tau+\frac{1}{18}y_0\tau^2+\frac{2}{3}t\tau^2-\frac{\tau^2}{2}\\
+        \end{gather*}
+        Donde mi funcion debe de tender a $y_{1, n}$
+    }
+       \item {
+       Bueno al ser no homogenea, entonces hacemos variacion de parametros, en este caso la forma matricial seria, donde X es la matriz de variables diferenciadas:
+        \begin{gather*}
+            X = 
+                \begin{pmatrix}
+                1 & -\frac{2}{3}\\
+                \frac{4}{3} & -1 
+                \end{pmatrix}
+            +  \begin{pmatrix}
+                t \\
+                1 
+                \end{pmatrix}\\
+            Det(A-\lambda I) = 
+                \begin{pmatrix}
+                1 -\lambda& -\frac{2}{3}\\
+                \frac{4}{3} & -1-\lambda 
+                \end{pmatrix}\\
+            \text{con el polinomio caracteristico:}
+            P_A(x)= x^2 -\frac{1}{9}
+        \end{gather*}
+        \begin{equation}
+                \begin{cases}
+                   \lambda_1 = \frac{1}{3}\\
+                   \lambda_2 = -\frac{1}{3}\\
+                \end{cases}
+        \end{equation}
+        Ambos con multiplicidad Algebraica de 1.
+            \begin{itemize}
+                \item {
+                $\lambda_1$
+                \begin{gather*}
+                    \begin{pmatrix}
+                    1 -\frac{1}{3}& -\frac{2}{3}\\
+                    \frac{4}{3} & -1-\frac{1}{3} 
+                    \end{pmatrix}
+                    \longrightarrow
+                    \begin{pmatrix}
+                    \frac{2}{3}& -\frac{2}{3}\\
+                    \frac{4}{3} & -\frac{4}{3} 
+                    \end{pmatrix}
+                    \\
+                    x=y \rightarrow span\{\begin{pmatrix}
+                1 \\
+                1 
+                \end{pmatrix}\}\\
+                Dim(E(\lambda_1)) = 1
+                \end{gather*}
+                }
+                   \item {
+                $\lambda_2$
+                \begin{gather*}
+                    \begin{pmatrix}
+                    1 +\frac{1}{3}& -\frac{2}{3}\\
+                    \frac{4}{3} & -1+\frac{1}{3} 
+                    \end{pmatrix}
+                    \longrightarrow
+                    \begin{pmatrix}
+                    \frac{4}{3}& -\frac{2}{3}\\
+                    \frac{4}{3} & -\frac{2}{3} 
+                    \end{pmatrix}
+                    \\
+                    2x=y \rightarrow span\{\begin{pmatrix}
+                1 \\
+                2 
+                \end{pmatrix}\}\\
+                Dim(E(\lambda_2)) = 1
+                \end{gather*}
+                }
+            \end{itemize}
+    }
+    Gracias a que ambos tienen misma cantidad de ambas multiplicidades (algebraica y geometrica) con esto solo tendremos un bloque de Jordan (el general vaya).
+    \begin{gather*}
+        y = C_1 \begin{pmatrix}
+                1 \\
+                1 
+                \end{pmatrix}
+            e^{\frac{t}{3}}
+            + C_2 \begin{pmatrix}
+                1 \\
+                2 
+                \end{pmatrix}
+            e^{\frac{-t}{3}}\\
+                \underbrace{\begin{pmatrix}
+                 e^{\frac{t}{3}}&  e^{\frac{-t}{3}}\\
+                 e^{\frac{t}{3}} & 2 e^{\frac{-t}{3}} 
+                \end{pmatrix}}_{\Phi}
+                \begin{pmatrix}
+                C_1 \\
+                C_2 
+                \end{pmatrix}\\
+        |\Phi| = 1\\
+        adj(\Phi)^t=
+                \begin{pmatrix}
+                 2e^{\frac{-t}{3}}&  -e^{\frac{-t}{3}}\\
+                 -e^{\frac{t}{3}} & e^{\frac{t}{3}} 
+                \end{pmatrix}\\
+        \Phi^{-1}=|\Phi|* adj(\Phi)^t=  \begin{pmatrix}
+                                         2e^{\frac{-t}{3}}&  -e^{\frac{-t}{3}}\\
+                                         -e^{\frac{t}{3}} & e^{\frac{t}{3}} 
+                                        \end{pmatrix}\\
+        \Phi^{-1}*\overline{F} = \begin{pmatrix}
+                            2e^{\frac{-t}{3}}&  -e^{\frac{-t}{3}}\\
+                            -e^{\frac{t}{3}} & e^{\frac{t}{3}} 
+                            \end{pmatrix}*\begin{pmatrix}
+                            t \\
+                            1 
+                            \end{pmatrix}\\
+        \int{\begin{pmatrix}
+            2te^{\frac{-t}{3}} -e^{\frac{-t}{3}}\\
+            -te^{\frac{t}{3}} + e^{\frac{t}{3}} 
+            \end{pmatrix} dt}\\
+        \begin{pmatrix}
+            -15e^{\frac{-t}{3}} -6te^{\frac{-t}{3}}\\
+            12e^{\frac{t}{3}} - 3te^{\frac{t}{3}} 
+        \end{pmatrix}\\
+        \Phi*\int{\Phi^{-1}*\overline{F}}\\
+        \begin{pmatrix}
+                 e^{\frac{t}{3}}&  e^{\frac{-t}{3}}\\
+                 e^{\frac{t}{3}} & 2 e^{\frac{-t}{3}} 
+        \end{pmatrix} 
+        * \begin{pmatrix}
+            -15e^{\frac{-t}{3}} -6te^{\frac{-t}{3}}\\
+            12e^{\frac{t}{3}} - 3te^{\frac{t}{3}} 
+        \end{pmatrix}\\
+        \begin{pmatrix}
+            -3-9t\\
+            9-12t 
+        \end{pmatrix}\\
+        \begin{pmatrix}
+                -3 \\
+                9 
+        \end{pmatrix}+\begin{pmatrix}
+                -9 \\
+                -12 
+        \end{pmatrix}t\\
+         y = C_1 \begin{pmatrix}
+                1 \\
+                1 
+                \end{pmatrix}
+            e^{\frac{t}{3}}
+            + C_2 \begin{pmatrix}
+                1 \\
+                2 
+                \end{pmatrix} +\begin{pmatrix}
+                -3 \\
+                9 
+        \end{pmatrix}+\begin{pmatrix}
+                -9 \\
+                -12 
+        \end{pmatrix}t \text{\space} \blacksquare
+    \end{gather*}
+\end{enumerate}
+\end{mdframed}
+
+
+
+%%% EJERCICIO 2
+\begin{prob}
+Considere dos puntos A1 y A2, r1 la distancia del origen al punto A1, r2 la distancia del
+origen al punto A2 , ambas rectas forman un ángulo $\theta$ con vértice en el origen. Si r es la
+distancia de A1 a A2 , muestre que
+$$\frac{1}{r} = \frac{1}{r_2}\sum_{n=0}^\infty P_n(\cos(\theta))\left(\frac{r_1}{r_2}\right)^n$$
+\end{prob}
+    
+    \begin{mdframed}
+    \begin{center}
+         \begin{tikzpicture}
+        \draw[lightgray] (-1, -2) grid (7, 5);
+        \coordinate[label=left:$O$] (A) at (1,0);
+        \coordinate[label=left:$A_1$] (B) at (0,4);
+        \coordinate[label=above:$A_2$] (C) at (5,2);
+        \draw[thick] (A)--(B) node[midway, above left] {$r_1$}-- (C)node[midway, below] {$r$} --cycle;
+        \draw (A) -- (C) node[midway, below] {$r_2$};
+        \draw pic[draw, angle eccentricity=1.2, angle radius=1cm, "$\theta$"] {angle = C--A--B};
+    \end{tikzpicture}
+    \end{center}
+    AHora con esto usemnos la funcion generatriz
+    \begin{gather*}
+        \sum_{n=0}^{\infty}P_n(x)t^n = \frac{1}{\sqrt{1-2xt+t^2}}\\
+        \frac{1}{r_2}\sum_{n=0}^{\infty}P_n(\cos(\theta))\left(\frac{r_1}{r_2}\right)^n =\frac{1}{r_2}* \frac{1}{\sqrt{1-2\cos(\theta)\left(\frac{r_1}{r_2}\right)+\left(\frac{r_1}{r_2}\right)^2}}\\
+        \frac{1}{r_2}*\frac{1}{\sqrt{r_2^2-2\cos(\theta)r_1*r_2+\left({r_1}\right)^2}}*r_2\\
+        \frac{1}{\sqrt{r_2^2-2\cos(\theta)r_1*r_2+\left({r_1}\right)^2}}\\
+        \text{por ley de cosenos}\\
+        r^2=r_1^2+r_2^2-2\cos(\theta)r_1r_2\\
+        \frac{1}{\sqrt{r^2}}\longrightarrow\frac{1}{||r||_1}\\
+        \text{por geometria todo es positivo}\\
+        \frac{1}{\sqrt{r^2}}\longrightarrow\frac{1}{r} \blacksquare
+    \end{gather*}
+
+    \end{mdframed}
+
+
+%%% EJERCICIO 3
+\begin{prob}
+Utilizando series, resuelva la EDO
+$$y'' + (e^x - 9)y = 0$$
+\end{prob}
+\begin{mdframed}
+    Para este caso, pues acoplare la serie de taylor en base a todos los valores que tengo de las series, antes de eso hay que percatarse que como no tiene puntos singulares, no se usa Frobenius, simplemente serie de potencias. Y recordando que Euler es:
+    $$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}$$
+    AHora si con esto podemos comenzar
+    \begin{gather*}
+        y = \sum_{n=0}^{\infty}   a_n x^{n}\\
+        y' = \sum_{n=0}^{\infty}  ({n}) a_n x^{n-1}\\
+        y'' = \sum_{n=0}^{\infty}  ({n})*({n-1}) a_n x^{n-2}\\
+         \sum_{n=0}^{\infty}  ({n})*({n-1}) a_n x^{n-2} + e^x \sum_{n=0}^{\infty} a_n x^{n}-9\sum_{n=0}^{\infty} a_n x^{n}\\
+        \underbrace{(2a_2+6a_3x+12a_4x^2+\dots)}_{y''}+\underbrace{(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots)}_{e^x}*\underbrace{(a_0+a_1x+a_2x^2+\dots)}_{y}-9\underbrace{(a_0+a_1x+a_2x^2+\dots)}_{y}=0\\
+        \underline{\begin{matrix}
+        a_0 & a_1x & a_2x & \cdots\\
+         & a_0x & a_1x^2 & \cdots \\
+         &     & \frac{a_0}{2!}x^2 & \cdots \\
+         &     &  & \ddots \\
+        \end{matrix}}\\
+        a_0+(a_1+a_0)x+(a_2+a_1+\frac{a_0}{2!})x^2+\dots+\left(\frac{a_n}{0!}+\frac{a_{n-1}}{1!}+\frac{a_{n-2}}{2!}+\frac{a_{0}}{{n}!} \right)x^n\\
+        2a_2+a_0+(6a_3+a_1+a_0)x+(12a_4+a_2+a_1+\frac{a_0}{2!})x^2+\dots - 9a_0-9a_1x-\dots\\
+        2a_2-8a_0+(6a_3-8a_1+a_0)x+(12a_4-8a_2+a_1+\frac{a_0}{2!})x^2+\dots =0\\
+        \text{al final se puede hacer todo eso por Independencia Lineal :)}
+    \end{gather*}
+          \begin{equation}
+                \begin{cases}
+                   a_2=4a_0\\
+                   a_3=\frac{8a_1-a_0}{6}\\
+                   a_4=\frac{63}{24}a_0-\frac{a_1}{12}\\
+                \end{cases}
+            \end{equation}
+    \begin{align*}
+        y &= a_0+a_1x+a_2x^2+\dots\\
+        &=a_0+a_1x+4a_0x^2+\frac{4}{3}a_1x^3-\frac{1}{6}a_0x^3+\frac{21}{8}a_0x^4-\frac{a_1}{12}x^4+\dots\\
+        &= (1+4x^2-\frac{1}{6}x^3+\frac{21}{8}x^4)a_0+(x+\frac{4}{3}x^3-\frac{1}{12}x^4)a_1 \blacksquare
+        \end{align*}
+\end{mdframed}
+%%% EJERCICIO 4
+\begin{prob}
+ Muestre que los polinomios de Legendre $P_n(x)$ satisfacen la recurrencia
+$$xP'_n(x)-P'_{n-1}(x) = nP_n(x)$$
+\end{prob}
+\begin{mdframed}
+    Podemos usar la funcion generatriz de Legendre para esto, esto porque aqui si la puedo derivar mejor, a comparacion de usar Rodrigues(aunque imagino que jala tambien)
+    \begin{gather*}
+        \sum_{n=0}^{\infty}P_n(x)t^n = \frac{1}{\sqrt{1-2xt+t^2}}\\
+        \diff{}{x}P_n(x)=\frac{t}{\sqrt{{(1-2xt+t^2)}^3}}\\
+        P'_{n-1}(x)=\sum_{n=0}^{\infty}P'_{n-1}(x)t^n \longrightarrow
+        \sum_{n=0}^{\infty}P'_n(x)t^{n+1}\\
+        P'_{n-1}(x)=t\sum_{n=0}^{\infty}P'_{n}(x)t^n \longrightarrow tP'n\\
+        xP'_n(x)-P'_{n-1}(x) =  xP'_n(x)-tP'_{n}(x)\longrightarrow(x-t)P'n(x)\\
+        (x-t)\frac{t}{\sqrt{{(1-2xt+t^2)}^3}}\\
+        \diff{}{t}P_n=\sum_{n=0}^{\infty}nt^{n-1}P_n(x)\\
+        \diff{}{t}P_n= \frac{1}{\sqrt{(1-2xt+t^2)^3}}*\frac{2x-2t}{2}\\
+        \diff{}{t}P_n= \frac{x-t}{\sqrt{(1-2xt+t^2)^3}}\\
+        \diff{}{t}P_n=\sum_{n=0}^{\infty}nt^{n-1}P_n(x)\\
+        (x-t)= \sum_{n=0}^{\infty}nt^{n-1}P_n(x)*\sqrt{(1-2xt+t^2)^3}\\
+        (x-t)\frac{t}{\sqrt{{(1-2xt+t^2)}^3}}\longrightarrow \sum_{n=0}^{\infty}nt^{n-1}P_n(x)*\sqrt{(1-2xt+t^2)^3}*\frac{t}{\sqrt{{(1-2xt+t^2)}^3}}\\
+        t\sum_{n=0}^{\infty}nt^{n-1}P_n(x) \longrightarrow \sum_{n=0}^{\infty}nt^{n}P_n(x) = nP_n(x) \blacksquare
+    \end{gather*}
+\end{mdframed}
